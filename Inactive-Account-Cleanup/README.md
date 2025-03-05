@@ -1,39 +1,31 @@
-Inactive Active Directory Account Cleanup Script
+                                            Inactive Active Directory Account Cleanup Script
 
 Overview
-
 This PowerShell script identifies and disables inactive Active Directory user accounts older than a specified number of days. It also generates a report for auditing and optionally disables inactive accounts.
 
 Features
 
 Safety Mechanisms
-
-Exclusion list for protected accounts (e.g., Administrator, Service Accounts)
-
-Confirmation prompt before disabling accounts
-
-Report-only mode for previewing results
-
-Detailed error tracking
+<ul>
+<li>Exclusion list for protected accounts (e.g., Administrator, Service Accounts)</li>
+<li>Confirmation prompt before disabling accounts</li>
+<li>Report-only mode for previewing results</li>
+</ul>
 
 Auditing
-
-Timestamped CSV reports
-
-Logs account metadata before disabling
-
-Optional email notifications
+<ul>
+<li>Timestamped CSV reports</li>
+<li>Logs account metadata before disabling</li>
+<li>Optional email notifications</li>
+</ul>
 
 Flexibility
-
-Configurable inactivity period
-
-Target specific Organizational Units (OUs)
-
-Dry run mode (-ReportOnly)
-
-Action mode (-DisableAccounts)
-
+<ul>
+<li>Configurable inactivity period</li>
+<li>Target specific Organizational Units (OUs)</li>
+<li>Dry run mode (-ReportOnly)</li>
+<li>Action mode (-DisableAccounts)</li>
+</ul>
 
 Usage
 1. Generate Report Only (No Changes Made)
@@ -47,7 +39,6 @@ Usage
 
 Advanced Options
 Schedule the Script (Run Weekly)
-
 $Trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 2am
 $Action = New-ScheduledTaskAction -Execute 'powershell.exe' `
   -Argument "-File C:\Scripts\InactiveADCleanup.ps1 -DisableAccounts"
@@ -60,41 +51,28 @@ Get-ChildItem C:\ADAudit\*.csv | Where-Object {
     $_.LastWriteTime -lt (Get-Date).AddDays(-90)
 } | Remove-Item
 
-Best Practices
+Best Practices		
 
 Pre-Execution Checklist
-
-Test in a non-production environment
-
-Verify backup/restore process
-
-Communicate with stakeholders
-
+<li>Test in a non-production environment</li>
+<li>Verify backup/restore process</li>
+<li>Communicate with stakeholders</li>
+<br/>
 Post-Disablement Actions
-
-Move disabled accounts to a "Disabled Users" OU
-
-Remove group memberships
-
-Schedule permanent deletion (after 90 days)
-
+<li>Move disabled accounts to a "Disabled Users" OU</li>
+<li>Remove group memberships</li>
+<li>Schedule permanent deletion (after 90 days)</li>
+<br/>
 Monitoring
-
-Review CSV reports weekly
-
-Audit enabled accounts with old LastLogonDate
-
-Monitor Event ID 4725 (Account Disabled) in Security logs
-
-
+<li>Review CSV reports weekly</li>
+<li>Audit-enabled accounts with old LastLogonDate</li>
+<li>Monitor Event ID 4725 (Account Disabled) in Security logs</li>
+<br/>
 Security Considerations
-
-Run the script with least-privilege permissions:
-
-Read access to all users
-
-Write access to userAccountControl attribute
-
-Store reports securely in a protected folder
-
-Encrypt email notifications if sending sensitive data
+<li>Run the script with least-privilege permissions:</li>
+    <ul>	
+    <li>Read access to all users</li>
+    <li>Write access to user AccountControl attribute</li>
+    </ul>
+<li>Store reports securely in a protected folder</li>
+<li>Encrypt email notifications if sending sensitive data</li>
