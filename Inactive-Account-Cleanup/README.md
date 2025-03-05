@@ -2,21 +2,30 @@
 
 Overview
 This PowerShell script identifies and disables inactive Active Directory user accounts older than a specified number of days. It also generates a report for auditing and optionally disables inactive accounts.
+
 Features
-•	Safety Mechanisms
-    o	Exclusion list for protected accounts (e.g., Administrator, Service Accounts)
-    o	Confirmation prompt before disabling accounts
-    o	Report-only mode for previewing results
-    o	Detailed error tracking
-•	Auditing
-    o	Timestamped CSV reports
-    o	Logs account metadata before disabling
-    o	Optional email notifications
-•	Flexibility
-    o	Configurable inactivity period
-    o	Target specific Organizational Units (OUs)
-    o	Dry run mode (-ReportOnly)
-    o	Action mode (-DisableAccounts)
+
+Safety Mechanisms
+<ul>
+<li>Exclusion list for protected accounts (e.g., Administrator, Service Accounts)</li>
+<li>Confirmation prompt before disabling accounts</li>
+<li>Report-only mode for previewing results</li>
+</ul>
+
+Auditing
+<ul>
+<li>Timestamped CSV reports</li>
+<li>Logs account metadata before disabling</li>
+<li>Optional email notifications</li>
+</ul>
+
+Flexibility
+<ul>
+<li>Configurable inactivity period</li>
+<li>Target specific Organizational Units (OUs)</li>
+<li>Dry run mode (-ReportOnly)</li>
+<li>Action mode (-DisableAccounts)</li>
+</ul>
 
 Usage
 1. Generate Report Only (No Changes Made)
@@ -43,22 +52,27 @@ Get-ChildItem C:\ADAudit\*.csv | Where-Object {
 } | Remove-Item
 
 Best Practices		
-•	Pre-Execution Checklist
-    o	Test in a non-production environment
-    o	Verify backup/restore process
-    o	Communicate with stakeholders
-•	Post-Disablement Actions
-    o	Move disabled accounts to a "Disabled Users" OU
-    o	Remove group memberships
-    o	Schedule permanent deletion (after 90 days)
-•	Monitoring
-    o	Review CSV reports weekly
-    o	Audit enabled accounts with old LastLogonDate
-    o	Monitor Event ID 4725 (Account Disabled) in Security logs
 
+Pre-Execution Checklist
+<li>Test in a non-production environment</li>
+<li>Verify backup/restore process</li>
+<li>Communicate with stakeholders</li>
+<br/>
+Post-Disablement Actions
+<li>Move disabled accounts to a "Disabled Users" OU</li>
+<li>Remove group memberships</li>
+<li>Schedule permanent deletion (after 90 days)</li>
+<br/>
+Monitoring
+<li>Review CSV reports weekly</li>
+<li>Audit-enabled accounts with old LastLogonDate</li>
+<li>Monitor Event ID 4725 (Account Disabled) in Security logs</li>
+<br/>
 Security Considerations
-•	Run the script with least-privilege permissions:
-    o	Read access to all users
-    o	Write access to userAccountControl attribute
-•	Store reports securely in a protected folder
-•	Encrypt email notifications if sending sensitive data
+<li>Run the script with least-privilege permissions:</li>
+    <ul>	
+    <li>Read access to all users</li>
+    <li>Write access to user AccountControl attribute</li>
+    </ul>
+<li>Store reports securely in a protected folder</li>
+<li>Encrypt email notifications if sending sensitive data</li>
