@@ -1,6 +1,6 @@
                                             Inactive Active Directory Account Cleanup Script
 
-Overview
+Overview<br/>
 This PowerShell script identifies and disables inactive Active Directory user accounts older than a specified number of days. It also generates a report for auditing and optionally disables inactive accounts.
 
 Features
